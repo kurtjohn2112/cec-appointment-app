@@ -2,7 +2,7 @@
 session_start();
 
 function connect(){
-    return $conn = new mysqli('localhost','root', 'root', 'appointment_db');
+    return $conn = new mysqli('localhost','root', '', 'appointment_db');
 
 }
 
