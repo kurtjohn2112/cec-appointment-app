@@ -16,7 +16,7 @@
                         <a href="#" class="nav-link">Profile</a>
                     </li>
                     <li class="nav-item">
-                        <a href="#" class="nav-link">Current Appointments</a>
+                        <a href="manage-messages.php" class="nav-link">Messages</a>
                     </li>
                     <li class="nav-item">
                         <a href="#" class="nav-link">Set an Appointment</a>

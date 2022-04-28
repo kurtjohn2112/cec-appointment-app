@@ -136,7 +136,7 @@ function show_week_date()
 
 function book_schedule($id,$date,$time,$teacher){
     $conn = connect();
-    $sql = "INSERT INTO schedules(student_id,date,time,teacher)VALUES('$id','$date','$time','$teacher')";
+    $sql = "INSERT INTO schedules(student_id,date,time,teacher_id)VALUES('$id','$date','$time','$teacher')";
     $result  = $conn->query($sql);
 
     if($result){
@@ -166,6 +166,19 @@ function show_specific_date_booking($id,$date)
     }
 }
 
+
+function sendMessage($std_id,$t_id,$mesage){
+    $conn = connect();
+    $sql = "INSERT INTO std_messages(student_id,teacher_id,message)VALUES('$std_id','$t_id','$mesage')";
+    $result  = $conn->query($sql);
+
+    if($result){
+        success_message('Message Sent Successfully!');
+    }else{
+        die('ERROR '. $conn->error);
+    }
+    
+}
 
 
 

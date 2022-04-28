@@ -17,7 +17,6 @@ if (isset($_POST['book_date'])) {
 ?>
 
 
-
 <main class="py-5">
 
     <div class="container">
@@ -40,7 +39,7 @@ if (isset($_POST['book_date'])) {
                         <select name="teacher" id="" class="form-select mb-3">
                             <option value="" selected disabled hidden>Select a teacher</option>
                             <?php foreach (show('teachers') as $row) : ?>
-                                <option value="<?php echo $row['fullname'] ?>"><?php echo $row['fullname'] ?></option>
+                                <option value="<?php echo $row['id'] ?>"><?php echo $row['fullname'] ?></option>
                             <?php endforeach; ?>
                         </select>
                         <button type="submit" name="book_date" class="btn btn-success"> <i class="fas fa-calendar    "></i> Book Schedule </button>
@@ -54,7 +53,7 @@ if (isset($_POST['book_date'])) {
                         $sched = show_specific_date_booking($_SESSION['id'], $_GET['date']);
                   if(!empty($sched)):
                         foreach ($sched as $row) : ?>
-                            <p class="font-monospace"><?php echo $row['date'] ?> | <?php echo $row['time'] ?> |Appointment for Teacher: <?php echo $row['teacher'] ?></p>
+                            <p class="font-monospace"><?php echo $row['date'] ?> | <?php echo $row['time'] ?> |Appointment for Teacher: <?php echo show_data('teachers','id',$row['teacher_id'])['fullname'] ?></p>
                             <hr>
                         <?php endforeach; ?>
                 <?php endif; ?>

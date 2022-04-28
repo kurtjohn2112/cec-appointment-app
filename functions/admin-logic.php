@@ -90,9 +90,9 @@ function show_data_multiple($table_name, $pk, $id)
 
 #------------------ teachers queries
 
-function create_teacher($fullname,$contact){
+function create_teacher($fullname,$contact,$username,$password){
     $conn = connect();
-    $sql = "INSERT INTO teachers(fullname,contact)VALUES('$fullname','$contact')";
+    $sql = "INSERT INTO teachers(fullname,contact,username,password)VALUES('$fullname','$contact','$username','$password')";
     $result = $conn->query($sql);
 
     if ($result == TRUE) {
@@ -101,6 +101,25 @@ function create_teacher($fullname,$contact){
         die('ERROR: ' . $conn->error);
     }
 
+}
+function login($username, $password)
+{
+    $conn = connect();
+    $sql = "SELECT * FROM teachers WHERE username = '$username' AND password = '$password'";
+    $result = $conn->query($sql);
+
+    if ($result->num_rows  == 1) {
+        $row = $result->fetch_assoc();
+       
+            $_SESSION['fullname'] = $row['fullname'];
+            $_SESSION['id'] = $row['id'];
+            
+            header('location: teacher-views/teacher-dashboard.php');
+     
+    
+    }else{
+        echo "ERROR: INVALID CREDENTIALS";
+    }
 }
 
 

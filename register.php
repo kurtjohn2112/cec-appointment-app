@@ -1,6 +1,6 @@
 <?php include 'html/head.html'; 
 include 'functions/user-logic.php';
-include 'student-views/navbar.php';
+include 'navbar.php';
 
 if(isset($_POST['register'])){
     $fname = $_POST['fname'];

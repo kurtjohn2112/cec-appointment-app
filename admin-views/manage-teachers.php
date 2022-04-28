@@ -6,8 +6,10 @@ include 'navbar.php';
 if(isset($_POST['save_teacher'])){
     $name = $_POST['fullname'];
     $contact = $_POST['contact'];
+    $username = $_POST['username'];
+    $password = $_POST['password'];
 
-    create_teacher($name,$contact);
+    create_teacher($name,$contact,$username,$password);
 
 }
 
@@ -29,6 +31,12 @@ if(isset($_POST['save_teacher'])){
                     </div>
                     <div class="mb-3">
                         <input type="text" placeholder="Contact Information" name="contact" id="" class="form-control">
+                    </div>
+                    <div class="mb-3">
+                        <input type="text" placeholder="Username" name="username" id="" class="form-control">
+                    </div>
+                    <div class="mb-3">
+                        <input type="password" placeholder="Password" name="password" id="" class="form-control">
                     </div>
                     <div class="mb-3">
                       <button type="submit" name="save_teacher" class="btn btn-secondary"> <i class="fas fa-check    "></i> Save teacher</button>

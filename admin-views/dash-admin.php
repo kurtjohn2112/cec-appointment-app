@@ -10,6 +10,9 @@ include 'navbar.php'
 <main class="py-5">
 
     <div class="container">
+        <h1 class="display-1 text-center">
+            CREATE YOUR UI HERE..
+        </h1>
         
         <div class="card w-75 mx-auto shadow mt-5">
             <div class="card-header bg-success text-light p-3">
