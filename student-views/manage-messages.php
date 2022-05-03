@@ -4,7 +4,6 @@ include '../functions/user-logic.php';
 include 'navbar.php';
 
 
-
 if (isset($_POST['send_message'])) {
 
     $id = $_SESSION['id'];
@@ -37,17 +36,22 @@ if (isset($_POST['send_message'])) {
                 </form>
             </div>
             <div class="col-4">
-                           
 
-               <?php if(!empty(show_data_multiple('std_messages','student_id',$_SESSION['id']))): ?>
-                    
-                <?php foreach(show_data_multiple('std_messages','teacher_id',$_SESSION['id']) as $row): ?>
-                        
-                        
+
+                <?php if (!empty(show_data_multiple('teach_messages', 'student_id', $_SESSION['id']))) : ?>
+
+                    <?php foreach (show_data_multiple('teach_messages', 'teacher_id', $_SESSION['id']) as $row) : ?>
+                        <div class="border p-3">
+                            <p class="font-monospace">Sender: <?php echo  show_data('teachers','id',$row['teacher_id'])['fullname'] ?></p>
+                            <p class="fst-italic">
+                                <?php echo $row['message'] ?>
+                            </p>
+                        </div>
+
                     <?php endforeach; ?>
-                <?php else: ?>
+                <?php else : ?>
                     <div class="alert alert-secondary">No Messages yet</div>
-               <?php endif ?>
+                <?php endif ?>
             </div>
         </div>
     </div>

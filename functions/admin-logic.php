@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 include 'connection.php';
 
@@ -74,7 +74,7 @@ function show_uploaded_images($id, $label)
 function show_data_multiple($table_name, $pk, $id)
 {
     $conn = connect();
-    $sql = "SELECT * FROM $table_name WHERE $pk = '$id'";
+    $sql = "SELECT * FROM $table_name WHERE $pk = '$id' ORDER BY $pk ASC";
     $result = $conn->query($sql);
 
     if ($result->num_rows > 0) {
@@ -90,17 +90,17 @@ function show_data_multiple($table_name, $pk, $id)
 
 #------------------ teachers queries
 
-function create_teacher($fullname,$contact,$username,$password){
+function create_teacher($fullname, $contact, $username, $password)
+{
     $conn = connect();
     $sql = "INSERT INTO teachers(fullname,contact,username,password)VALUES('$fullname','$contact','$username','$password')";
     $result = $conn->query($sql);
 
     if ($result == TRUE) {
-       success_message('Teacher added successfully!');
+        success_message('Teacher added successfully!');
     } else {
         die('ERROR: ' . $conn->error);
     }
-
 }
 function login($username, $password)
 {
@@ -110,15 +110,79 @@ function login($username, $password)
 
     if ($result->num_rows  == 1) {
         $row = $result->fetch_assoc();
-       
-            $_SESSION['fullname'] = $row['fullname'];
-            $_SESSION['id'] = $row['id'];
-            
-            header('location: teacher-views/teacher-dashboard.php');
-     
-    
-    }else{
+
+        $_SESSION['fullname'] = $row['fullname'];
+        $_SESSION['id'] = $row['id'];
+
+        header('location: teacher-views/teacher-dashboard.php');
+    } else {
         echo "ERROR: INVALID CREDENTIALS";
+    }
+}
+
+function teacher_send_message($t_id, $s_id, $message)
+{
+
+    $conn = connect();
+    $sql = "INSERT INTO teach_messages(teacher_id,student_id,message)VALUES('$t_id','$s_id','$message')";
+    $result = $conn->query($sql);
+
+    if ($result == TRUE) {
+        echo '<div class="alert alert-warning alert-dismissible fade show" role="alert">
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                <strong>Message sent successfully</strong> 
+             </div>';
+    } else {
+        die('ERROR: ' . $conn->error);
+    }
+}
+
+function approve_appointment($teacher_id,$appointment_id){
+    $conn = connect();
+    $sql = "UPDATE schedules SET status = 'approved' WHERE teacher_id = '$teacher_id' AND id = '$appointment_id'";
+    $result = $conn->query($sql);
+
+    if ($result == TRUE) {
+        echo '<div class="alert alert-warning alert-dismissible fade show" role="alert">
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                <strong>Approved sent successfully</strong> 
+             </div>';
+    } else {
+        die('ERROR: ' . $conn->error);
+    }
+
+}
+
+function show_pending_appointment($id)
+{
+    $conn = connect();
+    $sql = "SELECT  * FROM schedules WHERE teacher_id = '$id' ORDER BY id DESC ";
+    $result = $conn->query($sql);
+
+    if ($result->num_rows > 0) {
+        $rows = array();
+        while ($row  = $result->fetch_assoc()) {
+            $rows[] = $row;
+        }
+        return $rows;
+    } else {
+        return FALSE;
+    }
+}
+function show_pending_appointment_students($id)
+{
+    $conn = connect();
+    $sql = "SELECT  * FROM schedules WHERE student_id = '$id'  ORDER BY id DESC ";
+    $result = $conn->query($sql);
+
+    if ($result->num_rows > 0) {
+        $rows = array();
+        while ($row  = $result->fetch_assoc()) {
+            $rows[] = $row;
+        }
+        return $rows;
+    } else {
+        return FALSE;
     }
 }
 
@@ -154,5 +218,3 @@ function failed_message($message)
           <strong>$message</strong> 
         </div>";
 }
-
-?>

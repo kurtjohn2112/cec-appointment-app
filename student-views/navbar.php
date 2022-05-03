@@ -19,7 +19,7 @@
                         <a href="manage-messages.php" class="nav-link">Messages</a>
                     </li>
                     <li class="nav-item">
-                        <a href="#" class="nav-link">Set an Appointment</a>
+                        <a href="approved-appointments.php" class="nav-link">Approved Appointments</a>
                     </li>
                     <li class="nav-item">
                         <a href="logout.php" class="nav-link">Logout</a>

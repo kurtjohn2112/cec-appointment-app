@@ -30,25 +30,24 @@ if (isset($_POST['reject'])) {
     <div class="container">
         <table class="table table-bordered">
             <thead class="table-dark">
-                <td>Student Name</td>
+                <td>Teacher Name</td>
                 <td>Time of the day</td>
                 <td>Date</td>
-                <td>Actions</td>
+                <td>Status</td>
+               
 
             </thead>
             <tbody>
-                <?php foreach (show_pending_appointment($_SESSION['id']) as $row) : ?>
+                <?php foreach (show_pending_appointment_students($_SESSION['id']) as $row) : ?>
                     <tr>
-                        <td><?php echo show_data('users', 'id', $row['student_id'])['fname'] . " " . show_data('users', 'id', $row['student_id'])['lname'] ?></td>
+                        <td><?php echo show_data('teachers', 'id', $row['teacher_id'])['fullname']  ?></td>
                         <td class="text-uppercase font-monospace"><?php echo $row['time'] ?></td>
                         <td class="font-monospace"><?php echo $row['date'] ?></td>
-                        <td>
+                        <td colspan>
                             <?php if ($row['status'] == 'not approved') : ?>
-                                <form action="" method="post" class="d-inline">
-                                    <!-- <input type="hidden" name="status" value="approved"> -->
-                                    <input type="hidden" name="id" value="<?php echo $row['id'] ?>">
-                                    <button type="submit" name="approve" class="btn btn-warning">Approve <i class="fas fa-question"></i> 
-                                </form>
+                                <span class="badge bg-warning">
+                                    Not Approved <i class="fas fa-check-circle"></i>
+                                </span>
                                 
                             <?php else: ?>
                                 <span class="badge bg-success">
