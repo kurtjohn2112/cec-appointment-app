@@ -45,6 +45,22 @@ if(isset($_POST['register'])){
                         <input type="password" name="pword" placeholder="Password" id="" class="form-control form-control-lg" required>
                         <div class="form-text">Password should be atleast 8 characters</div>
                     </div>
+                    <div class="mb-3">
+                        <input type="password" name="" placeholder="Student Number" id="" class="form-control form-control-lg" required>
+                        <div class="form-text">Student number is provided on your ID</div>
+                    </div>
+                    <div class="mb-3">
+                        <input type="password" name="" placeholder="Phone Number" id="" class="form-control form-control-lg" required>
+                        <div class="form-text">Contact Information</div>
+                    </div>
+                    <div class="mb-3">
+                        <select name="" id="" class="form-select form-select-lg">
+                            <option value="">First Year</option>
+                            <option value="">Second Year</option>
+                            <option value="">Third Year</option>
+                            <option value="">Fourth Year</option>
+                        </select>
+                    </div>
 
                     <div class="mb-3">
                         <button type="submit" name="register" class="btn btn-lg btn-dark">Register</button>
