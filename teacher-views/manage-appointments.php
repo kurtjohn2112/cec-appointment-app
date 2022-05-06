@@ -3,7 +3,7 @@ include '../functions/admin-logic.php';
 
 include 'navbar.php';
 
-echo $_SESSION['id'];
+// echo $_SESSION['id'];
 
 if (isset($_POST['approve'])) {
 

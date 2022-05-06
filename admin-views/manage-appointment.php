@@ -21,7 +21,7 @@ include 'navbar.php'
                 <tbody>
                     <?php foreach( show('schedules') as $row ): ?>
                         <tr>
-                            <td><?php echo $row['teacher'] ?></td>
+                            <td><?php echo show_data('teachers','id',$row['teacher_id'])['fullname'] ?></td>
                             <td class="text-uppercase font-monospace"><?php echo $row['time'] ?></td>
                             <td class="font-monospace"><?php echo $row['date'] ?></td>
                             <td>

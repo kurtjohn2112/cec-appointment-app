@@ -3,14 +3,13 @@ include '../functions/admin-logic.php';
 
 include 'navbar.php';
 
-if(isset($_POST['save_teacher'])){
+if (isset($_POST['save_teacher'])) {
     $name = $_POST['fullname'];
     $contact = $_POST['contact'];
     $username = $_POST['username'];
     $password = $_POST['password'];
 
-    create_teacher($name,$contact,$username,$password);
-
+    create_teacher($name, $contact, $username, $password);
 }
 
 ?>
@@ -39,7 +38,7 @@ if(isset($_POST['save_teacher'])){
                         <input type="password" placeholder="Password" name="password" id="" class="form-control">
                     </div>
                     <div class="mb-3">
-                      <button type="submit" name="save_teacher" class="btn btn-secondary"> <i class="fas fa-check    "></i> Save teacher</button>
+                        <button type="submit" name="save_teacher" class="btn btn-secondary"> <i class="fas fa-check    "></i> Save teacher</button>
                     </div>
                 </form>
             </div>
@@ -50,15 +49,15 @@ if(isset($_POST['save_teacher'])){
             <thead class="table-secondary">
                 <td>Teacher Fullname</td>
                 <td>Contact Info</td>
-              
+                <td>Action</td>
+
             </thead>
             <tbody>
-                <?php foreach( show('teachers') as $row): ?>
+                <?php foreach (show('teachers') as $row) : ?>
                     <tr>
                         <td><?php echo $row['fullname'] ?></td>
                         <td><?php echo $row['contact'] ?></td>
-                       
-                       
+                        <td> <a class="btn btn-danger" href="delete.php?teacher_id=<?php echo $row['id'] ?> ">Deactivate Account</a> </td>
                     </tr>
                 <?php endforeach; ?>
             </tbody>
