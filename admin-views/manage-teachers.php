@@ -50,17 +50,14 @@ if(isset($_POST['save_teacher'])){
             <thead class="table-secondary">
                 <td>Teacher Fullname</td>
                 <td>Contact Info</td>
-                <td>Actions</td>
+              
             </thead>
             <tbody>
                 <?php foreach( show('teachers') as $row): ?>
                     <tr>
                         <td><?php echo $row['fullname'] ?></td>
                         <td><?php echo $row['contact'] ?></td>
-                        <td class="text-center">
-                            <a href="#" class="btn btn-info mx-1"> <i class="fas fa-eye text-light"></i> </a>
-                            <a href="#" class="btn btn-danger mx-1"> <i class="fas fa-trash-alt text-light "></i> </a>
-                        </td>
+                       
                        
                     </tr>
                 <?php endforeach; ?>
